@@ -1,12 +1,12 @@
---torch/distributed/fsdp/fully_sharded_data_parallel.py
+--torch/distributed/fsdp/flat_param.py
 ...
-def _get_shard_functional(
-        tensor: torch.Tensor,
+def _get_shard(
+        tensor: Tensor,
         rank: int,
         world_size: int,
-    ) -> Tuple[torch.Tensor, int]:
+    ) -> Tuple[Tensor, int]:
 
-    chunk, num_to_pad = FullyShardedDataParallel._get_chunk(
+    chunk, num_to_pad = FlatParamHandle._get_chunk(
         tensor, rank, world_size,
     )
     shard = chunk.clone()
