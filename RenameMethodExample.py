@@ -1,4 +1,4 @@
-def rescale(self, 
+def rescale_image(self, 
             image: np.ndarray, 
             scale: Union[float, int]
             ) -> np.ndarray:
@@ -9,7 +9,7 @@ def to_numpy_array(self, image,
                    channel_first=True):
     ...
     if rescale:
-        image = self.rescale(
+        image = self.rescale_image(
             image.astype(np.float32),
             1 / 255.0)
     ...
