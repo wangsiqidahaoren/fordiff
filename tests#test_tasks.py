@@ -10,7 +10,7 @@ from keras.layers.convolutional import Convolution2D
 from keras.utils.np_utils import to_categorical
 
 
-def test_vector_clf():
+def test_vector_classification():
     np.random.seed(1337)
     nb_hidden = 10
 
@@ -28,11 +28,11 @@ def test_vector_clf():
     y_train = to_categorical(y_train)
     y_test = to_categorical(y_test)
 
-    model = Sequential()
-    model.add(Dense(nb_hidden, input_shape=(X_train.shape[-1],)))
-    model.add(Activation('relu'))
-    model.add(Dense(y_train.shape[-1]))
-    model.add(Activation('softmax'))
+    model = Sequential([
+        Dense(nb_hidden, input_shape=(X_train.shape[-1],), activation='relu'),
+        Dense(y_train.shape[-1], activation='softmax')
+    ])
+
     model.compile(loss='categorical_crossentropy', optimizer='rmsprop')
     history = model.fit(X_train, y_train, nb_epoch=15, batch_size=16,
                         validation_data=(X_test, y_test),
